@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".Game">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Multiplication Mobile Game"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif-light"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Сколько будет"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif-light"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="2x2"
+                android:textColor="@color/colorWhite"
+                android:textSize="56sp"
+                android:fontFamily="sans-serif-light"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button"
+                    android:fontFamily="sans-serif"
+                    android:text="4"
+                    android:textColor="@android:color/white"
+                    android:layout_margin="16dp"
+                    android:textSize="35sp"
+                    android:onClick="finishGame"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button"
+                    android:fontFamily="sans-serif"
+                    android:text="4"
+                    android:textColor="@android:color/white"
+                    android:layout_margin="16dp"
+                    android:textSize="35sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button"
+                    android:fontFamily="sans-serif"
+                    android:text="4"
+                    android:textColor="@android:color/white"
+                    android:layout_margin="16dp"
+                    android:textSize="35sp" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button"
+                    android:fontFamily="sans-serif"
+                    android:text="4"
+                    android:textColor="@android:color/white"
+                    android:layout_margin="16dp"
+                    android:textSize="35sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="Score: 25 points"
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorWhite"/>
+                <TextView
+                    android:id="@+id/timer_text_view"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center_vertical"
+                    android:text="00:30"
+                    android:textSize="24sp"
+                    android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
