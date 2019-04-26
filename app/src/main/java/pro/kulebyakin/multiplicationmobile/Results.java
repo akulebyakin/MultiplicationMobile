@@ -27,15 +27,12 @@ import java.util.List;
 public class Results extends AppCompatActivity {
 
     final String FILE_NAME = "results.txt";
-    private  String name = "Andrey";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        printInFile(12);
-        printInFile(16);
-        printInFile(1);
         TextView resultTextView = findViewById(R.id.results_text_view);
 
         //Делаем скролл в TextView
@@ -45,22 +42,6 @@ public class Results extends AppCompatActivity {
 
     public void returnBack(View view) {
         finish();
-    }
-
-    void printInFile (int points) {
-        BufferedWriter bufferedWriter = null;
-        try {
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_APPEND)));
-            bufferedWriter.write(name + " - " + points + " points\n");
-        } catch (IOException e){
-            e.printStackTrace();;
-        } finally {
-            try {
-                bufferedWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public String readFromFile () {

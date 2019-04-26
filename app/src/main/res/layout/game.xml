@@ -37,11 +37,12 @@
                 android:textSize="24sp"
                 android:fontFamily="sans-serif-light"/>
             <TextView
+                android:id="@+id/question_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="2x2"
+                android:text="2 x 2"
                 android:textColor="@color/colorWhite"
                 android:textSize="56sp"
                 android:fontFamily="sans-serif-light"/>
@@ -61,6 +62,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btn1"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -70,8 +72,9 @@
                     android:textColor="@android:color/white"
                     android:layout_margin="16dp"
                     android:textSize="35sp"
-                    android:onClick="finishGame"/>
+                    android:onClick="checkAnswer"/>
                 <Button
+                    android:id="@+id/btn2"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -80,6 +83,7 @@
                     android:text="4"
                     android:textColor="@android:color/white"
                     android:layout_margin="16dp"
+                    android:onClick="checkAnswer"
                     android:textSize="35sp"/>
 
             </LinearLayout>
@@ -90,6 +94,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btn3"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -98,8 +103,10 @@
                     android:text="4"
                     android:textColor="@android:color/white"
                     android:layout_margin="16dp"
+                    android:onClick="checkAnswer"
                     android:textSize="35sp" />
                 <Button
+                    android:id="@+id/btn4"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -108,6 +115,7 @@
                     android:text="4"
                     android:textColor="@android:color/white"
                     android:layout_margin="16dp"
+                    android:onClick="checkAnswer"
                     android:textSize="35sp"/>
 
             </LinearLayout>
@@ -120,10 +128,11 @@
                 >
 
                 <TextView
+                    android:id="@+id/points_text_id"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="Score: 25 points"
+                    android:text="Score: 0 points"
                     android:textSize="24sp"
                     android:gravity="center_vertical"
                     android:textColor="@color/colorWhite"/>

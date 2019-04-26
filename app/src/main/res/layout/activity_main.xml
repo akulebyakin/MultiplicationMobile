@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,11 +22,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-light"
                 android:gravity="center_horizontal"
                 android:text="Multiplication Mobile Game"
                 android:textColor="@color/colorWhite"
-                android:textSize="24sp"
-                android:fontFamily="sans-serif-light"/>
+                android:textSize="24sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -42,18 +41,16 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <Button
+            <EditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="48dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginRight="48dp"
-                android:background="@drawable/button"
-                android:fontFamily="sans-serif-light"
-                android:text="Start Game"
-                android:textColor="@android:color/white"
-                android:textSize="26sp"
-                android:onClick="startGame"/>
+                android:backgroundTint="@color/colorWhite"
+                android:hint="Введите имя"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite" />
 
             <Button
                 android:layout_width="match_parent"
@@ -63,10 +60,11 @@
                 android:layout_marginRight="48dp"
                 android:background="@drawable/button"
                 android:fontFamily="sans-serif-light"
-                android:text="Results"
+                android:onClick="startGame"
+                android:text="Start Game"
                 android:textColor="@android:color/white"
-                android:textSize="26sp"
-                android:onClick="results"/>
+                android:textSize="26sp" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,10 +73,23 @@
                 android:layout_marginRight="48dp"
                 android:background="@drawable/button"
                 android:fontFamily="sans-serif-light"
+                android:onClick="results"
+                android:text="Results"
+                android:textColor="@android:color/white"
+                android:textSize="26sp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="48dp"
+                android:background="@drawable/button"
+                android:fontFamily="sans-serif-light"
+                android:onClick="exitGame"
                 android:text="Exit"
                 android:textColor="@android:color/white"
-                android:textSize="26sp"
-                android:onClick="exitGame"/>
+                android:textSize="26sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -87,7 +98,7 @@
                 android:gravity="bottom|center_horizontal"
                 android:text="kulebyakin.pro"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
