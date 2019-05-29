@@ -2,13 +2,22 @@ package pro.kulebyakin.multiplicationmobile;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -23,6 +32,11 @@ public class Game extends Activity {
     private int numberRightAnswers = 0;
     private int numberFalseAnswers = 0;
     String name;
+    int bestResult;
+
+    String currentUserUID;
+
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +44,12 @@ public class Game extends Activity {
         setContentView(R.layout.game);
 
         name = getIntent().getStringExtra("name");
+        currentUserUID = getIntent().getStringExtra("currentUserUID");
+
 
         TextView timerTextView = findViewById(R.id.timer_text_view);
 
-        new CountDownTimer(30000, 1000) {
+        new CountDownTimer(5000, 1000) {
             @Override
             public void onTick(long l) {
                 int time = (int) l / 1000;
@@ -58,6 +74,28 @@ public class Game extends Activity {
             @Override
             public void onFinish() {
                 // TODO (2) Make finish method
+
+                myRef = FirebaseDatabase.getInstance().getReference("users");
+
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.child(currentUserUID).getValue(User.class);
+                        //bestResult = user.result;
+                        if (user == null) {
+                            writeNewUser(currentUserUID, name, points);
+                        } else if (user.result < points) {
+                            bestResult = points;
+                            writeNewUser(currentUserUID, name, points);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 endGame();
             }
         }.start();
@@ -73,32 +111,40 @@ public class Game extends Activity {
         nextMission();
     }
 
+    private void writeNewUser(String userId, String name, int result) {
+        User user = new User(name, result);
+        myRef.child(userId).setValue(user);
+    }
+
     private void endGame() {
+
         printInFile(points);
         AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
         a_builder.setMessage("Время вышло" +
                 "\nВаш счёт: " + points +
                 "\nПравильных ответов: " + numberRightAnswers +
-                "\nНеправильных ответов: " + numberFalseAnswers)
+                "\nНеправильных ответов: " + numberFalseAnswers +
+                "\nЛучший результат: " + bestResult)
                 .setCancelable(false)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener(){
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
                     }
                 });
-        AlertDialog alert= a_builder.create();
+        AlertDialog alert = a_builder.create();
         alert.setTitle("Game over");
         alert.show();
     }
 
-    void printInFile (int points) {
+    void printInFile(int points) {
         BufferedWriter bufferedWriter = null;
         try {
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_APPEND)));
             bufferedWriter.write(name + " - " + points + " points\n");
-        } catch (IOException e){
-            e.printStackTrace();;
+        } catch (IOException e) {
+            e.printStackTrace();
+            ;
         } finally {
             try {
                 bufferedWriter.close();

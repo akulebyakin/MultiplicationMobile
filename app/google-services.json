@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "784378339422",
+    "firebase_url": "https://multiplication-mobile.firebaseio.com",
+    "project_id": "multiplication-mobile",
+    "storage_bucket": "multiplication-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784378339422:android:ea85a59f4b4c1ee7",
+        "android_client_info": {
+          "package_name": "pro.kulebyakin.multiplicationmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "784378339422-8jr2tha5bptvgg3rf28p53i2lstirc59.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.kulebyakin.multiplicationmobile",
+            "certificate_hash": "17d9db097e1feff6c4258b479deba28d5fde5ca1"
+          }
+        },
+        {
+          "client_id": "784378339422-k23hspho1qc81ivn6ulnrse0hfk61acn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgQX9ir26DJYbWRXqmDdNVZh7m9PNVfrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784378339422-k23hspho1qc81ivn6ulnrse0hfk61acn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -30,9 +30,21 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/hello_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal|bottom"
+                android:text="Sign in to start"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -41,16 +53,47 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/name"
+            <!--<EditText-->
+            <!--android:id="@+id/name"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="48dp"-->
+            <!--android:layout_marginRight="48dp"-->
+            <!--android:backgroundTint="@color/colorWhite"-->
+            <!--android:hint="Введите имя"-->
+            <!--android:maxLines="1"-->
+            <!--android:singleLine="true"-->
+            <!--android:textColor="@color/colorWhite"-->
+            <!--android:textColorHint="@color/colorWhite" />-->
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="48dp"
-                android:layout_marginRight="48dp"
-                android:backgroundTint="@color/colorWhite"
-                android:hint="Введите имя"
-                android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorWhite" />
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/sign_out_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Выйти"
+                    android:textColor="@android:color/white"
+                    android:textSize="26sp" />
+
+            </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
