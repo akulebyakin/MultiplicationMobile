@@ -80,18 +80,13 @@
                     android:layout_marginRight="8dp"
                     android:layout_weight="1" />
 
-                <Button
+                <com.google.android.gms.common.SignInButton
                     android:id="@+id/sign_out_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="48dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Выйти"
-                    android:textColor="@android:color/white"
-                    android:textSize="26sp" />
+                    android:layout_weight="1" />
 
             </LinearLayout>
 

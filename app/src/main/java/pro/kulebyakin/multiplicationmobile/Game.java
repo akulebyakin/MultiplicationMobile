@@ -26,13 +26,12 @@ import java.util.Timer;
 
 public class Game extends Activity {
 
-    final String FILE_NAME = "results.txt";
+    //final String FILE_NAME = "results.txt";
     private int answer = 0;
     private int points = 0;
     private int numberRightAnswers = 0;
     private int numberFalseAnswers = 0;
     String name;
-    int bestResult;
     TextView usernameTextView;
 
     String currentUserUID;
@@ -88,7 +87,6 @@ public class Game extends Activity {
                         if (user == null) {
                             writeNewUser(currentUserUID, name, points);
                         } else if (user.result < points) {
-                            bestResult = points;
                             writeNewUser(currentUserUID, name, points);
                         }
                     }
@@ -121,13 +119,11 @@ public class Game extends Activity {
 
     private void endGame() {
 
-        printInFile(points);
         AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
-        a_builder.setMessage("Время вышло" +
+        a_builder.setMessage("Время вышло!" +
                 "\nВаш счёт: " + points +
                 "\nПравильных ответов: " + numberRightAnswers +
-                "\nНеправильных ответов: " + numberFalseAnswers +
-                "\nЛучший результат: " + bestResult)
+                "\nНеправильных ответов: " + numberFalseAnswers)
                 .setCancelable(false)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -140,22 +136,22 @@ public class Game extends Activity {
         alert.show();
     }
 
-    void printInFile(int points) {
-        BufferedWriter bufferedWriter = null;
-        try {
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_APPEND)));
-            bufferedWriter.write(name + " - " + points + " points\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-            ;
-        } finally {
-            try {
-                bufferedWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    void printInFile(int points) {
+//        BufferedWriter bufferedWriter = null;
+//        try {
+//            bufferedWriter = new BufferedWriter(new OutputStreamWriter(openFileOutput(FILE_NAME, MODE_APPEND)));
+//            bufferedWriter.write(name + " - " + points + " points\n");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            ;
+//        } finally {
+//            try {
+//                bufferedWriter.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public void nextMission() {
         TextView questionTextView = findViewById(R.id.question_text_view);
