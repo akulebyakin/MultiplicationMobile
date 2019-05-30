@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -28,6 +31,8 @@ public class RatingList extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+    
+    private TextView noDataTextView;
 
 
     @Override
@@ -40,6 +45,7 @@ public class RatingList extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("users");
 
+        noDataTextView = findViewById(R.id.no_data_text_view);
         recyclerView = findViewById(R.id.recycle_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -47,31 +53,47 @@ public class RatingList extends AppCompatActivity {
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        //createresult();
+        createresult();
 
         adapter = new UserAdapter(result);
         recyclerView.setAdapter(adapter);
 
         updateList();
+        checkIfEmpty();
+    }
+
+    private void checkIfEmpty() {
+        if (result.size() == 0) {
+            recyclerView.setVisibility(View.INVISIBLE);
+            noDataTextView.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            noDataTextView.setVisibility(View.INVISIBLE);
+
+        }
     }
 
     @Override
     public boolean onContextItemSelected (MenuItem item) {
         switch (item.getItemId()){
             case 0:
+                Toast.makeText(this, "Недостаточно прав", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
+                Toast.makeText(this, "Недостаточно прав", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onContextItemSelected(item);
     }
 
-//    private void createresult () {
-//        for (int i = 0; i < 50; i++) {
-//            result.add(new User("Test Name", 42));
-//        }
-//
-//    }
+    private void createresult () {
+        int rnd = 0;
+        for (int i = 0; i < 50; i++) {
+            rnd = (int) (Math.random() * 50.0);
+            result.add(new User("Test Name", rnd, null));
+        }
+
+    }
 
     private void updateList() {
         myRef.addChildEventListener(new ChildEventListener() {
@@ -80,7 +102,7 @@ public class RatingList extends AppCompatActivity {
                 result.add(dataSnapshot.getValue(User.class));
                 Collections.sort(result);
                 adapter.notifyDataSetChanged();
-
+                checkIfEmpty();
             }
 
             @Override
@@ -101,6 +123,7 @@ public class RatingList extends AppCompatActivity {
                 result.remove(index);
                 Collections.sort(result);
                 adapter.notifyDataSetChanged();
+                checkIfEmpty();
             }
 
             @Override

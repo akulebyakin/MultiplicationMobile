@@ -3,6 +3,7 @@ package pro.kulebyakin.multiplicationmobile;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Path;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.net.URI;
 import java.util.Timer;
 
 public class Game extends Activity {
@@ -33,6 +35,7 @@ public class Game extends Activity {
     private int numberFalseAnswers = 0;
     String name;
     TextView usernameTextView;
+    String userImageURL;
 
     String currentUserUID;
 
@@ -43,6 +46,7 @@ public class Game extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
+        userImageURL = getIntent().getStringExtra("userImageURI");
         name = getIntent().getStringExtra("name");
         currentUserUID = getIntent().getStringExtra("currentUserUID");
 
@@ -85,9 +89,9 @@ public class Game extends Activity {
                         User user = dataSnapshot.child(currentUserUID).getValue(User.class);
                         //bestResult = user.result;
                         if (user == null)  {
-                            writeNewUser(currentUserUID, name, points);
+                            writeNewUser(currentUserUID, name, points, userImageURL);
                         } else if (user.result < points) {
-                            writeNewUser(currentUserUID, name, points);
+                            writeNewUser(currentUserUID, name, points, userImageURL);
                         }
                     }
                     @Override
@@ -110,8 +114,9 @@ public class Game extends Activity {
         nextMission();
     }
 
-    private void writeNewUser(String userId, String name, int result) {
-        User user = new User(name, result);
+    private void writeNewUser(String userId, String name, int result, String imageURL) {
+
+        User user = new User(name, result, imageURL);
         myRef.child(userId).setValue(user);
     }
 

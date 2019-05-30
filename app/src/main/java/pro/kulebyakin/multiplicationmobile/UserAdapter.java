@@ -6,13 +6,16 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private List<User> list;
-    private String rating = "1";
 
     public UserAdapter(List<User> list) {
         this.list = list;
@@ -32,6 +35,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         userViewHolder.scoreTextView.setText(Integer.toString(user.result));
         userViewHolder.ratingTextView.setText((position + 1) + ".");
 
+        if (user.userImageURL != null) {
+            Picasso.get().load(user.userImageURL).into(userViewHolder.userImage);
+        } else {
+            userViewHolder.userImage.setImageResource(R.drawable.horse);
+        }
+
         userViewHolder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -50,6 +59,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     class UserViewHolder extends RecyclerView.ViewHolder {
 
         TextView ratingTextView, nameTextView, scoreTextView;
+        ImageView userImage;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,7 +67,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             ratingTextView = itemView.findViewById(R.id.rating_text_view);
             nameTextView = itemView.findViewById(R.id.name_text_view);
             scoreTextView = itemView.findViewById(R.id.score_text_view);
-
+            userImage = itemView.findViewById(R.id.user_image);
 
         }
     }

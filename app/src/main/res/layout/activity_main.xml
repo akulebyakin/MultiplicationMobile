@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/bg5"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -19,7 +19,8 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="sans-serif-light"
@@ -30,17 +31,20 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="0dp"
+                android:layout_weight="3"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/logo" />
+                android:src="@drawable/horse" />
 
             <TextView
                 android:id="@+id/hello_text_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-light"
-                android:gravity="center_horizontal|bottom"
+                android:gravity="center_horizontal|center_vertical"
                 android:text="Sign in to start"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
@@ -112,7 +116,7 @@
                 android:background="@drawable/button"
                 android:fontFamily="sans-serif-light"
                 android:onClick="results"
-                android:text="Results"
+                android:text="Rating"
                 android:textColor="@android:color/white"
                 android:textSize="26sp" />
 

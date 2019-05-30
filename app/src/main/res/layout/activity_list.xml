@@ -5,11 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg12"
     tools:context=".RatingList">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/no_data_text_view"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="No data..."
+        android:textColor="@color/colorWhite"
+        android:textSize="36sp"
+        android:textStyle="bold"/>
 
 </android.support.design.widget.CoordinatorLayout>

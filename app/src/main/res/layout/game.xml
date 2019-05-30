@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/bg5"
     tools:context=".Game">
 
     <LinearLayout
@@ -22,7 +22,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_horizontal"
                 android:text="Multiplication Mobile Game"
                 android:textColor="@color/colorWhite"
                 android:textSize="24sp"
@@ -124,7 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Username: "
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:textColor="@color/colorWhite"/>
@@ -140,10 +142,10 @@
                 <TextView
                     android:id="@+id/points_text_id"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:layout_height="match_parent"
                     android:text="Score: 0 points"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:gravity="center_vertical"
                     android:textColor="@color/colorWhite"/>
                 <TextView
@@ -153,7 +155,7 @@
                     android:layout_height="match_parent"
                     android:gravity="right|center_vertical"
                     android:text="00:30"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textColor="@color/colorWhite"/>
             </LinearLayout>
         </LinearLayout>

@@ -3,6 +3,7 @@ package pro.kulebyakin.multiplicationmobile;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -31,6 +32,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.squareup.picasso.Picasso;
 
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     TextView helloTextView;
     GoogleSignInClient mGoogleSignInClient;
+    Uri userImageURI;
 
     String name;
 
@@ -67,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
 
         helloTextView = findViewById(R.id.hello_text_view);
         signInButton = findViewById(R.id.sign_in_button);
@@ -167,20 +169,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             signInButton.setEnabled(false);
             signOutButton.setEnabled(true);
             name = user.getDisplayName();
+            userImageURI = user.getPhotoUrl();
+
             helloTextView.setText("Hello, " + name + "!");
         } else if (user == null) {
             signInButton.setEnabled(true);
             signOutButton.setEnabled(false);
-            helloTextView.setText("Sing in to strart the game");
+            helloTextView.setText("Sign in to start the game");
         }
 
     }
 
     public void startGame(View view) {
-//        String name = nameEditText.getText().toString().trim().replaceAll("\\s+", "_");;
-
         if (currentUser != null) {
             Intent intent = new Intent(this, Game.class);
+            intent.putExtra("userImageURI", userImageURI.toString());
             intent.putExtra("name", name);
             intent.putExtra("currentUserUID", currentUser.getUid());
             startActivity(intent);
