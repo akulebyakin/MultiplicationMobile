@@ -119,6 +119,16 @@
                     android:textSize="35sp"/>
 
             </LinearLayout>
+            <TextView
+                android:id="@+id/username_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username: "
+                android:textSize="24sp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/colorWhite"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

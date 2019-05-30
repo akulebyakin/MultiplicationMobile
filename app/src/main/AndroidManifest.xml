@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/small_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/small_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -23,7 +23,7 @@
             android:name=".Results"
             android:label="@string/title_activity_results"
             android:theme="@style/AppTheme" />
-        <activity android:name=".List"></activity>
+        <activity android:name=".RatingList"></activity>
     </application>
 
 </manifest>

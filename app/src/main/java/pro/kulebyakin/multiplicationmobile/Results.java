@@ -44,7 +44,7 @@ public class Results extends AppCompatActivity {
         finish();
     }
 
-    public String readFromFile () {
+    public String readFromFile() {
         String currentLine;
         String tempLine[];
         String str;

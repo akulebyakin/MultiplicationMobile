@@ -11,9 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -24,8 +22,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -35,7 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     SignInButton signInButton;
     Button signOutButton;
@@ -115,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -129,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                Toast.makeText(this, "Authentication failed :(", Toast.LENGTH_SHORT).show();
-                // ...
+                snackbarShow("Authentication Failed :(");
+                updateUI(null);
             }
         }
     }
@@ -146,16 +143,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            snackbarShow(getWindow().getDecorView().getRootView(), "Hello, " +
+                            snackbarShow("Hello, " +
                                     acct.getDisplayName() + "!");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                            name = acct.getDisplayName();
+                            currentUser = mAuth.getCurrentUser();
+                            updateUI(currentUser);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            //Snackbar.make(findViewById(R.layout.activity_main), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            //updateUI(null);
+                            snackbarShow("Authentication Failed :(");
+                            updateUI(null);
                         }
 
                         // ...
@@ -165,7 +161,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            helloTextView.setText("Hello, " + user.getDisplayName() + "!");
+            name = user.getDisplayName();
+            helloTextView.setText("Hello, " + name + "!");
         } else if (user == null) {
             helloTextView.setText("Sing in to strart the game");
         }
@@ -175,20 +172,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public void startGame(View view) {
 //        String name = nameEditText.getText().toString().trim().replaceAll("\\s+", "_");;
 
-        if (name.length() != 0) {
+        if (currentUser != null) {
             Intent intent = new Intent(this, Game.class);
             intent.putExtra("name", name);
             intent.putExtra("currentUserUID", currentUser.getUid());
             startActivity(intent);
         } else {
-            Toast.makeText(this, "Enter your name!", Toast.LENGTH_SHORT).show();
+            snackbarShow("Enter your name first!");
         }
     }
 
     public void results(View view) {
-        String name = nameEditText.getText().toString().trim().replaceAll("\\s+", "_");;
-
-        Intent intent = new Intent(this, List.class);
+        Intent intent = new Intent(this, RatingList.class);
         intent.putExtra("name", name);
 //        Intent intent = new Intent(this, Results.class);
         startActivity(intent);
@@ -202,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
         a_builder.setMessage("Ты че офигел выходить?")
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
@@ -214,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         dialog.cancel();
                     }
                 });
-        AlertDialog alert= a_builder.create();
+        AlertDialog alert = a_builder.create();
         alert.setTitle("Close app");
         alert.show();
     }
@@ -229,14 +224,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        snackbarShow(view, "You signed out. Bye-Bye!");
+                        snackbarShow("You signed out. Bye-Bye!");
                     }
                 });
+        currentUser = null;
         updateUI(null);
     }
 
-    private void snackbarShow(View view, String text) {
-        Snackbar snackbar = Snackbar.make(view, text, Snackbar.LENGTH_SHORT);
+    private void snackbarShow(String text) {
+        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), text, Snackbar.LENGTH_SHORT);
         Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
         layout.setBackgroundColor(getResources().getColor((R.color.colorPrimary)));
         snackbar.show();

@@ -33,6 +33,7 @@ public class Game extends Activity {
     private int numberFalseAnswers = 0;
     String name;
     int bestResult;
+    TextView usernameTextView;
 
     String currentUserUID;
 
@@ -46,6 +47,8 @@ public class Game extends Activity {
         name = getIntent().getStringExtra("name");
         currentUserUID = getIntent().getStringExtra("currentUserUID");
 
+        usernameTextView = findViewById(R.id.username_text_view);
+        usernameTextView.setText("Username: " + name);
 
         TextView timerTextView = findViewById(R.id.timer_text_view);
 
