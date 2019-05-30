@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             intent.putExtra("currentUserUID", currentUser.getUid());
             startActivity(intent);
         } else {
-            snackbarShow("Enter your name first!");
+            snackbarShow("Sign in first!");
         }
     }
 

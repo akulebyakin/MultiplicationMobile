@@ -46,12 +46,14 @@ public class Game extends Activity {
         name = getIntent().getStringExtra("name");
         currentUserUID = getIntent().getStringExtra("currentUserUID");
 
+        myRef = FirebaseDatabase.getInstance().getReference("users");
+
         usernameTextView = findViewById(R.id.username_text_view);
         usernameTextView.setText("Username: " + name);
 
         TextView timerTextView = findViewById(R.id.timer_text_view);
 
-        new CountDownTimer(5000, 1000) {
+        new CountDownTimer(30000, 1000) {
             @Override
             public void onTick(long l) {
                 int time = (int) l / 1000;
@@ -77,23 +79,19 @@ public class Game extends Activity {
             public void onFinish() {
                 // TODO (2) Make finish method
 
-                myRef = FirebaseDatabase.getInstance().getReference("users");
-
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         User user = dataSnapshot.child(currentUserUID).getValue(User.class);
                         //bestResult = user.result;
-                        if (user == null) {
+                        if (user == null)  {
                             writeNewUser(currentUserUID, name, points);
                         } else if (user.result < points) {
                             writeNewUser(currentUserUID, name, points);
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
 
@@ -118,7 +116,6 @@ public class Game extends Activity {
     }
 
     private void endGame() {
-
         AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
         a_builder.setMessage("Время вышло!" +
                 "\nВаш счёт: " + points +
