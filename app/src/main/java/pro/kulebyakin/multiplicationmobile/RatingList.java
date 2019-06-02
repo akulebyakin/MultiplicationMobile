@@ -53,7 +53,7 @@ public class RatingList extends AppCompatActivity {
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        createresult();
+        // createresult();
 
         adapter = new UserAdapter(result);
         recyclerView.setAdapter(adapter);

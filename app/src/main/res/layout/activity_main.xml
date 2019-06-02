@@ -20,9 +20,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
+                android:layout_weight="1"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center_horizontal"
                 android:text="Multiplication Mobile Game"
@@ -32,17 +32,17 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="3"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="3"
                 android:src="@drawable/horse" />
 
             <TextView
                 android:id="@+id/hello_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:layout_weight="1"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Sign in to start"
@@ -121,8 +121,22 @@
                 android:textSize="26sp" />
 
             <Button
+                android:id="@+id/chat_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="48dp"
+                android:background="@drawable/button"
+                android:fontFamily="sans-serif-light"
+                android:text="Chat"
+                android:textColor="@android:color/white"
+                android:textSize="26sp" />
+
+            <Button
+                android:layout_weight="0"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="48dp"
@@ -131,7 +145,8 @@
                 android:onClick="exitGame"
                 android:text="Exit"
                 android:textColor="@android:color/white"
-                android:textSize="26sp" />
+                android:textSize="26sp"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="match_parent"

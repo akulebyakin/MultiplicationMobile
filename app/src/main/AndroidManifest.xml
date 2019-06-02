@@ -11,30 +11,28 @@
         android:theme="@style/AppTheme">
 
         <activity
+            android:name=".Chat"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Game"
             android:label="@string/game"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Results"
             android:label="@string/title_activity_results"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".RatingList"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

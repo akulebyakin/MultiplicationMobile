@@ -35,10 +35,12 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.squareup.picasso.Picasso;
 
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements
+        GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     SignInButton signInButton;
     SignInButton signOutButton;
+    Button chatButton;
     GoogleApiClient mGoogleApiClient;
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 .build();
 
         helloTextView = findViewById(R.id.hello_text_view);
+        chatButton = findViewById(R.id.chat_button);
+        chatButton.setOnClickListener(this);
         signInButton = findViewById(R.id.sign_in_button);
 //        signInButton.setSize(SignInButton.SIZE_WIDE);
 //        signInButton.setColorScheme(SignInButton.COLOR_DARK);
@@ -109,7 +113,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.sign_out_button:
                 signOut(v);
                 break;
+            case R.id.chat_button:
+                enterChat(v);
+                break;
         }
+    }
+
+    private void enterChat(View v) {
+        Intent intent = new Intent(this, Chat.class);
+        startActivity(intent);
     }
 
     private void signIn() {

@@ -24,7 +24,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        return new UserViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.rating_item, parent, false));
+        return new UserViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.rating_item, parent, false));
     }
 
     @Override
