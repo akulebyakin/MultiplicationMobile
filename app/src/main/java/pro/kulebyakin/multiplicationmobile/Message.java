@@ -1,5 +1,7 @@
 package pro.kulebyakin.multiplicationmobile;
 
+import java.util.Date;
+
 public class Message {
 
     // TODO Добавить время и дату
@@ -7,6 +9,7 @@ public class Message {
     private String text;
     private String name;
     private String photoUrl;
+    private long timeMessage;
 
     public Message() {
     }
@@ -15,6 +18,12 @@ public class Message {
         this.text = text;
         this.name = name;
         this.photoUrl = photoUrl;
+
+        timeMessage = new Date().getTime();
+    }
+
+    public long getTimeMessage() {
+        return timeMessage;
     }
 
     public String getId() {

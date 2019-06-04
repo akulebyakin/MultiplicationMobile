@@ -2,4 +2,10 @@
     <string name="app_name">Multiplication Mobile</string>
     <string name="game">Game</string>
     <string name="title_activity_results">Results</string>
+    <string name="ADMOB_APP_ID">ca-app-pub-5347869784592924~7088137124</string>
+    <!--Real UNIT AD-->
+    <!--<string name="ADMOB_UNIT_AD_ID">ca-app-pub-5347869784592924/4514122281</string>-->
+    <!--Test UNIT AD-->
+    <string name="ADMOB_UNIT_AD_ID">ca-app-pub-3940256099942544/6300978111</string>
+
 </resources>

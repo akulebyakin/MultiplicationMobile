@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg13"
+    android:background="@drawable/bg5"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    android:paddingTop="8dp"
     android:paddingBottom="16dp"
     android:id="@+id/chat_relative_layout"
     tools:context=".Chat">
